@@ -29,8 +29,14 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route exact path="/products/:id" element={<SingleProduct />} />
 
-        {/* <Route exact path="/products/:id" children={<SingleProduct />} /> */}
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute>
+              <Checkout />
+            </PrivateRoute>
+          }
+        />
 
         <Route path="*" element={<Error />} />
       </Routes>
