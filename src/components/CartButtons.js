@@ -8,9 +8,11 @@ import { useUserContext } from "../context/user_context";
 import { BsBluetooth } from "react-icons/bs";
 
 const CartButtons = () => {
+  const { closeSidebar } = useProductsContext();
+
   return (
     <Wrapper className="cart-btn-wrapper">
-      <Link to="/cart" className="cart-btn">
+      <Link to="/cart" className="cart-btn" onClick={closeSidebar}>
         cart
         <span className="cart-container">
           <FaShoppingCart />
