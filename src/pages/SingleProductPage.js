@@ -18,30 +18,31 @@ const SingleProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const {
-    single_products_loading: loading,
-    single_products_error: error,
-    single_products: product,
+    single_product_loading: loading,
+    single_product_error: error,
+    single_product: product,
     fetchSingleProduct,
   } = useProductsContext();
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
+    // eslint-disable-next-line
   }, [id]);
-
   useEffect(() => {
     if (error) {
       setTimeout(() => {
-        navigate.push("/");
+        navigate("/");
       }, 3000);
     }
+    // eslint-disable-next-line
   }, [error]);
-
   if (loading) {
     return <Loading />;
   }
   if (error) {
     return <Error />;
   }
+
   const {
     name,
     price,
@@ -53,35 +54,34 @@ const SingleProductPage = () => {
     company,
     images,
   } = product;
-
   return (
     <Wrapper>
       <PageHero title={name} product />
       <div className="section section-center page">
         <Link to="/products" className="btn">
-          back to product
+          back to products
         </Link>
-        <div className="products-center">
-          <ProductImages />
+        <div className="product-center">
+          <ProductImages images={images} />
           <section className="content">
             <h2>{name}</h2>
-            <Stars />
+            <Stars stars={stars} reviews={reviews} />
             <h5 className="price">{formatPrice(price)}</h5>
             <p className="desc">{description}</p>
             <p className="info">
-              <span>Available:</span>
+              <span>Available : </span>
               {stock > 0 ? "In stock" : "out of stock"}
             </p>
             <p className="info">
-              <span>SKU:</span>
+              <span>SKU :</span>
               {sku}
             </p>
             <p className="info">
-              <span>Brand:</span>
+              <span>Brand :</span>
               {company}
             </p>
             <hr />
-            {stock > 0 && <AddToCart />}
+            {stock > 0 && <AddToCart product={product} />}
           </section>
         </div>
       </div>
