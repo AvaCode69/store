@@ -46,7 +46,7 @@ const products_reducer = (state, action) => {
     return {
       ...state,
       single_products_loading: false,
-      single_product: action.payload,
+      single_products: action.payload,
     };
   }
   if (action.type === GET_SINGLE_PRODUCT_ERROR) {
