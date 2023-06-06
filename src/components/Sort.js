@@ -4,39 +4,44 @@ import { BsFillGridFill, BsList } from "react-icons/bs";
 import styled from "styled-components";
 const Sort = () => {
   const {
-    all_products: products,
+    filtered_products: products,
     grid_view,
-    SetGridView,
-    SetListView,
+    setGridView,
+    setListView,
+    sort,
+    updateSort,
   } = useFilterContext();
-
   return (
     <Wrapper>
       <div className="btn-container">
         <button
-          type="button"
+          onClick={setGridView}
           className={`${grid_view ? "active" : null}`}
-          onClick={SetGridView}
         >
           <BsFillGridFill />
         </button>
         <button
-          type="button"
+          onClick={setListView}
           className={`${!grid_view ? "active" : null}`}
-          onClick={SetListView}
         >
           <BsList />
         </button>
       </div>
-      <p>{products.length}</p>
+      <p>{products.length} products found</p>
       <hr />
       <form>
         <label htmlFor="sort">sort by</label>
-        <select name="sort" id="sort" className="sort-input">
-          <option value="price-lowest">price(lowest)</option>
-          <option value="price-highest">price(highest)</option>
-          <option value="name-a">name(a-z)</option>
-          <option value="name-z">name(z-a)</option>
+        <select
+          name="sort"
+          id="sort"
+          value={sort}
+          onChange={updateSort}
+          className="sort-input"
+        >
+          <option value="price-lowest">price (lowest)</option>
+          <option value="price-highest">price (highest)</option>
+          <option value="name-a">name (a - z)</option>
+          <option value="name-z">name (z - a)</option>
         </select>
       </form>
     </Wrapper>
