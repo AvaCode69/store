@@ -76,7 +76,7 @@ const Filters = () => {
               })}
             </select>
           </div>
-          <div className="from-control">
+          <div className="form-control">
             <h5>colors</h5>
             <div className="colors">
               {colors.map((c, index) => {
@@ -113,6 +113,19 @@ const Filters = () => {
                 );
               })}
             </div>
+          </div>
+
+          <div className="form-control">
+            <h5>price</h5>
+            <p className="price">{formatPrice(price)}</p>
+            <input
+              name="price"
+              type="range"
+              onChange={updateFilters}
+              min={min_price}
+              max={max_price}
+              value={price}
+            />
           </div>
         </form>
       </div>
