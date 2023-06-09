@@ -16,6 +16,7 @@ const getLocalStorage = () => {
     return [];
   }
 };
+
 const initialState = {
   cart: getLocalStorage(),
   total_items: 0,
@@ -38,7 +39,7 @@ export const CartProvider = ({ children }) => {
   const clearCart = () => {};
 
   useEffect(() => {
-    localStorage.setItem("cart", state.cart);
+    localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
   return (
