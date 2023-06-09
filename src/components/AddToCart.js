@@ -6,7 +6,7 @@ import { useCartContext } from "../context/cart_context";
 import AmountButtons from "./AmountButtons";
 
 const AddToCart = ({ product }) => {
-  const { AddToCart } = useCartContext();
+  const { addToCart } = useCartContext();
 
   const { colors, stock, id } = product;
   const [mainColor, setMainColor] = useState(colors[0]);
@@ -31,11 +31,10 @@ const AddToCart = ({ product }) => {
       return tempAmount;
     });
   };
-
   return (
     <Wrapper>
       <div className="colors">
-        <span>colors:</span>
+        <span>colors :</span>
         <div>
           {colors.map((color, index) => {
             return (
@@ -53,24 +52,24 @@ const AddToCart = ({ product }) => {
           })}
         </div>
       </div>
-      <div className="cart-container">
+      <div className="btn-container">
         <AmountButtons
-          amount={amount}
           increase={increase}
           decrease={decrease}
+          amount={amount}
         />
+
         <Link
-          to="/"
+          to="/cart"
           className="btn"
-          onClick={() => AddToCart(id, mainColor, amount, product)}
+          onClick={() => addToCart(id, mainColor, amount, product)}
         >
-          Add to cart
+          add to cart
         </Link>
       </div>
     </Wrapper>
   );
 };
-
 const Wrapper = styled.section`
   margin-top: 2rem;
   .colors {
