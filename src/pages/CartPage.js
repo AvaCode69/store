@@ -18,7 +18,12 @@ const CartPage = () => {
         </div>
       </Wrapper>
     );
-  } else return <h4>cart page</h4>;
+  } else
+    return (
+      <Wrapper>
+        <CartContent />
+      </Wrapper>
+    );
 };
 
 const Wrapper = styled.main`
