@@ -29,7 +29,7 @@ const cart_reducer = (state, action) => {
         name: product.name,
         color,
         amount,
-        images: product.images[0].url,
+        image: product.images[0].url,
         price: product.price,
         max: product.stock,
       };
@@ -68,6 +68,19 @@ const cart_reducer = (state, action) => {
       }
     });
     return { ...state, cart: temCart };
+  }
+
+  if (action.type === COUNT_CART_TOTALS) {
+    const { total_items, total_amount } = state.cart.reduce(
+      (total, cartItem) => {
+        const { amount, price } = cartItem;
+        total.total_items += amount;
+        total.total_amount += price * amount;
+        return total;
+      },
+      { total_items: 0, total_amount: 0 }
+    );
+    return { ...state, total_items, total_amount };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

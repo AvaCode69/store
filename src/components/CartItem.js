@@ -4,7 +4,7 @@ import { formatPrice } from "../utils/helpers";
 import AmountButtons from "./AmountButtons";
 import { FaTrash } from "react-icons/fa";
 import { useCartContext } from "../context/cart_context";
-const CartItem = ({ id, images, color, name, price, amount }) => {
+const CartItem = ({ id, image, color, name, price, amount }) => {
   const { removeItem, toggleAmount } = useCartContext();
 
   const increase = () => {
@@ -16,7 +16,7 @@ const CartItem = ({ id, images, color, name, price, amount }) => {
   return (
     <Wrapper>
       <div className="title">
-        <img src={images} alt={name} />
+        <img src={image} alt={name} />
         <div>
           <h5 className="name">{name}</h5>
           <p className="color">
