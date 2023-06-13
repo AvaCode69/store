@@ -12,36 +12,39 @@ import {
   Error,
   Checkout,
   PrivateRoute,
+  AuthWrapper,
 } from "./pages";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Sidebar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
+    <AuthWrapper>
+      <Router>
+        <Navbar />
+        <Sidebar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
 
-        <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About />} />
 
-        <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
 
-        <Route path="/products" element={<Products />} />
-        <Route exact path="/products/:id" element={<SingleProduct />} />
+          <Route path="/products" element={<Products />} />
+          <Route exact path="/products/:id" element={<SingleProduct />} />
 
-        <Route
-          path="/checkout"
-          element={
-            <PrivateRoute>
-              <Checkout />
-            </PrivateRoute>
-          }
-        />
+          <Route
+            path="/checkout"
+            element={
+              <PrivateRoute>
+                <Checkout />
+              </PrivateRoute>
+            }
+          />
 
-        <Route path="*" element={<Error />} />
-      </Routes>
-      <Footer />
-    </Router>
+          <Route path="*" element={<Error />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </AuthWrapper>
   );
 }
 
